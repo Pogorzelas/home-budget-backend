@@ -19,4 +19,25 @@ export class IncomeService {
     return await this.findAll();
   }
 
+  async updateOne(incomeToUpdate: Income) {
+    return new Promise ((resolve, reject) => {
+        this.incomeModel.findOneAndUpdate(
+          {
+            _id: incomeToUpdate._id,
+          },
+          incomeToUpdate,
+          {
+            new: true,
+          },
+          (error, response) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(response._doc);
+            }
+          },
+        );
+    });
+  }
+
 }
