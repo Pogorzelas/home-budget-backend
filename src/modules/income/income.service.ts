@@ -40,4 +40,8 @@ export class IncomeService {
     });
   }
 
+  async deleteOne(_id: string) {
+    return await this.incomeModel.deleteOne({_id});
+  }
+
 }
