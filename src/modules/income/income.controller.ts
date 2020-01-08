@@ -18,7 +18,7 @@ export class IncomeController {
 
   @Patch()
   update(@Body() incomeToUpdate) {
-    return this.incomeService.updateOne(incomeToUpdate);
+    return this.incomeService.updateOne(incomeToUpdate._id, incomeToUpdate);
   }
 
 }

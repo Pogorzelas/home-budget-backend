@@ -19,13 +19,13 @@ export class IncomeService {
     return await this.findAll();
   }
 
-  async updateOne(incomeToUpdate: Income) {
+  async updateOne(id: string, incomeData: CreateIncomeDto) {
     return new Promise ((resolve, reject) => {
         this.incomeModel.findOneAndUpdate(
           {
-            _id: incomeToUpdate._id,
+            _id: id,
           },
-          incomeToUpdate,
+          incomeData,
           {
             new: true,
           },
