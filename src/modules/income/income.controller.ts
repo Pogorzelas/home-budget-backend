@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { IncomeService } from './income.service';
 
 @Controller('incomes')
@@ -17,8 +17,8 @@ export class IncomeController {
   }
 
   @Patch()
-  update(@Body() incomeToUpdate) {
-    return this.incomeService.updateOne(incomeToUpdate._id, incomeToUpdate);
+  update(@Body() incomeToUpdate, @Query('id') id) {
+    return this.incomeService.updateOne(id, incomeToUpdate);
   }
 
 }
