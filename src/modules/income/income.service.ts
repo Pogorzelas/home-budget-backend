@@ -16,7 +16,7 @@ export class IncomeService {
   async create(income: CreateIncomeDto): Promise<Income[]> {
     const createdIncome = new this.incomeModel(income);
     await createdIncome.save();
-    return await this.findAll();
+    return this.findAll();
   }
 
   async updateOne(_id: string, incomeData: CreateIncomeDto) {
@@ -41,7 +41,12 @@ export class IncomeService {
   }
 
   async deleteOne(_id: string) {
-    return await this.incomeModel.deleteOne({_id});
+    try {
+      await this.incomeModel.deleteOne({_id});
+      return this.findAll();
+    } catch (error) {
+      return error;
+    }
   }
 
 }
