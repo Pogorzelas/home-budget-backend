@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { IncomeService } from './income.service';
 
 @Controller('incomes')
@@ -16,13 +16,13 @@ export class IncomeController {
     return this.incomeService.create(incomeData);
   }
 
-  @Patch()
-  updateOne(@Body() incomeToUpdate, @Query('id') id) {
+  @Patch(':id')
+  updateOne(@Body() incomeToUpdate, @Param('id') id) {
     return this.incomeService.updateOne(id, incomeToUpdate);
   }
 
-  @Delete()
-  deleteOne(@Query('id') id) {
+  @Delete(':id')
+  deleteOne(@Param('id') id) {
     return this.incomeService.deleteOne(id);
   }
 }
